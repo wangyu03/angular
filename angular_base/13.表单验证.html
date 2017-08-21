@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+  <div ng-controller="main">
+    <form name="appForm">
+    
+      <label for="">姓名：</label>
+      <input type="text" name="username" ng-model="username" ng-minlength="5">
+      <button ng-click="check()">提交</button>
+
+      <div ng-show="appForm.username.$invalid">您输入的不能低于五位</div>
+      <p ng-show="checkRegist">请输入正确的信息</p>
+    </form>
+  </div>
+</body>
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app',[]);
+    app.controller('main',function($scope){
+      $scope.username = '';
+      $scope.check = function(){
+        if($scope.appForm.$invalid){
+          $scope.checkRegist = true;
+        }else{
+          $scope.checkRegist = false;
+        }
+      }
+    })
+  </script>
+</html>

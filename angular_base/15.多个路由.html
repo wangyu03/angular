@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+  <head>
+    页面头部
+  </head>
+  <div ng-view>
+
+  </div>
+</body>
+  <script src="angular.min.js"></script>
+  <script src="angular-route.min.js"></script>
+  <script>
+    // var app = angular.module('app',[]);
+
+    angular.module('app',['ngRoute'])
+    .config(function($routeProvider){
+      $routeProvider
+        .when('/',{
+          template:'<h1> 今天天气不错哦！{{msg}}</h1>',
+          controller:function($scope){
+            $scope.msg = '嘿嘿！';
+          }
+        })
+        .when('/stark',{
+          template:'<h1> {{data}}</h1>',
+          controller:function($scope){
+            $scope.data = 'hi stark.wang';
+          }
+        })
+        .otherwise({
+          redirectTo:'/' //当你访问的路由不存在时，会自动跳转到指定的位置
+        })
+    })
+  </script>
+</html>

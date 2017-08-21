@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+  <div ng-controller="main">
+    <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" alt="">
+    <input type="text" name="" id="" ng-model="name" ng-keyup="change(name)">
+    <!-- <input type="text" name=""  ng-click="change(name)" id="" value="搜索"> -->
+
+    <ul>
+      <li ng-repeat="item in data"> {{item}}</li>
+    </ul>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/angular.js/1.4.11/angular.min.js"></script>
+  <script>
+    var app = angular.module('app',[]);
+    app.controller('main',function($scope,$http){
+      var timer = null;
+      $scope.change = function(name){
+        $scope.data = [];
+        
+        // $http.jsonp('http://api.shudong.wang/v1/db.php',{
+        //   jsonpCallbackParam:'callback'
+        // }).then(function(data){
+        //   console.log(data);
+        // },function(data){
+        //   console.log("wrong");
+        // })
+
+
+
+        $http({
+          method:'JSONP',
+          url:'http://api.shudong.wang/v1/db.php&cb=JSON_CALLBACK'
+        }).then(function(response){
+          console.log(typeof response.data.hero);
+          // $scope.data = response.data.s;
+        },function(response){
+          console.log("发生了一些错误");
+        })
+
+        // $http({
+        //   method:'JSONP',
+        //   url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+name+'&cb=JSON_CALLBACK'
+        // }).then(function(response){
+        //   console.log(response.data);
+        //   $scope.data = response.data.s;
+        // },function(response){
+        //   console.log("发生了一些错误");
+        // })
+        
+      }
+    })
+  </script>
+</html>

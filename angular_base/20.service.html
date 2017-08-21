@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+  <div ng-controller="main">
+    {{data}}
+  </div>
+</body>
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app',[]);
+    app.service('ActivityService',function(){
+      // 这个里面专门用来获取api的数据 交个controller 来处理
+      this.name = 'stark';
+      this.fetch = function(data){
+        return data;
+      }
+    })
+
+    app.controller('main',['$scope','ActivityService',function($scope,ActivityService){
+      $scope.data = ActivityService.name;
+    }])
+  </script>
+</html>

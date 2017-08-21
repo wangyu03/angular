@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .grey{
+      background:#666;
+    }
+    .red {
+      background:red;
+    }
+    .green{
+      background:green;
+    }
+    .yellow{
+      background:yellow;
+    }
+  </style>
+</head>
+<body ng-app="app">
+  <div ng-controller="main">
+    <ul>
+      <li ng-repeat="item in colors" ng-class="{red:$first,grey:$even,yellow:$odd,green:$last}">
+          
+      </li>
+    </ul>
+  </div>
+</body>
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app',[]);
+    app.controller('main',function($scope){
+      $scope.colors = ['red','yellow','green','orange','stark','shudong'];
+    })
+  </script>
+</html>
